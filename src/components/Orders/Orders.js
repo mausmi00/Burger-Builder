@@ -26,7 +26,6 @@ class Orders extends Component {
         this.setState({ loading: false, orders: fetchedOrders });
       });
   }
-
   render() {
     return (
       <div>
