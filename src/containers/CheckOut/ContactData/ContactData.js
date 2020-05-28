@@ -4,7 +4,7 @@ import classes from "./ContactData.module.css";
 import axios from "../../../axios-orders";
 import Spinner from "../../../components/UI/Spinner/Spinner";
 import Input from "../../../components/UI/Input/Input";
-
+import { connect } from "react-redux";
 class ContactData extends Component {
   state = {
     orderForm: {
@@ -91,7 +91,7 @@ class ContactData extends Component {
 
   checkValidity(value, rules) {
     let isValid = true;
-    
+
     if (rules.required) {
       isValid = value.trim() !== "" && isValid;
     }
@@ -117,7 +117,7 @@ class ContactData extends Component {
     }
 
     const order = {
-      ingredients: this.props.ingredients,
+      ingredients: this.props.ings,
       //should calculate the price in server so that user cannot manipulate it
 
       price: parseFloat(this.props.price).toFixed(2),
@@ -200,4 +200,11 @@ class ContactData extends Component {
   }
 }
 
-export default ContactData;
+const mapStateToProps = (state) => {
+  return {
+    ings: state.ingredients,
+    price: state.totalPrice,
+  };
+};
+
+export default connect(mapStateToProps)(ContactData);
