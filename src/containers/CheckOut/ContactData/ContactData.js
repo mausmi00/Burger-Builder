@@ -124,7 +124,6 @@ class ContactData extends Component {
   };
 
   inputChangedHandler = (event, inputIdentifier) => {
-    console.log(event.target.value);
     const updatedOrderForm = {
       ...this.state.orderForm,
     };
@@ -138,7 +137,6 @@ class ContactData extends Component {
     );
     updatedFormElement.touched = true;
     updatedOrderForm[inputIdentifier] = updatedFormElement;
-    console.log(updatedFormElement);
     const formIsValid = Object.values(updatedOrderForm).every(
       (value) => value.valid
     );
@@ -165,7 +163,6 @@ class ContactData extends Component {
             shouldValidate={formElement.config.validation}
             invalid={!formElement.config.valid}
             touched={formElement.config.touched}
-            pal
             changed={(event) => this.inputChangedHandler(event, formElement.id)}
           />
         ))}
@@ -195,7 +192,7 @@ const mapStateToProps = (state) => {
   return {
     ings: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
-    loading: state.order.loading
+    loading: state.order.loading,
   };
 };
 
@@ -204,4 +201,7 @@ const mapDispatchToProps = (dispatch) => {
     onOrderBurger: (orderData) => dispatch(actions.purchaseBurger(orderData)),
   };
 };
-export default connect(mapStateToProps,mapDispatchToProps)(withErrorHandler(ContactData, axios));
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(withErrorHandler(ContactData, axios));
