@@ -5,6 +5,7 @@ const initialState = {
   loading: false,
   purchased: false,
 };
+
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.PURCHASE_BURGER_SUCCESS:
