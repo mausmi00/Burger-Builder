@@ -3,10 +3,8 @@ import CheckOutSummary from "../../components/Order/CheckOutSummary/CheckOutSumm
 import { Route, Redirect } from "react-router-dom";
 import ContactData from "./ContactData/ContactData";
 import { connect } from "react-redux";
-import * as actions from "../../store/actions/index";
-import { purchaseBurgerStart } from "../../store/actions/order";
-class CheckOut extends Component {
 
+class CheckOut extends Component {
   checkoutCancelledHandler = () => {
     this.props.history.goBack();
   };
@@ -47,6 +45,5 @@ const mapStateToProps = (state) => {
     purchased: state.order.purchased,
   };
 };
-
 
 export default connect(mapStateToProps)(CheckOut);

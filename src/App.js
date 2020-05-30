@@ -1,14 +1,23 @@
 import React, { Component } from "react";
 import Layout from "./containers/Layout/Layout";
 import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder.js";
-import CheckOut from "./containers/CheckOut/CheckOut";
-import { Route, withRouter, Redirect } from "react-router-dom";
-import Orders from "./components/Orders/Orders";
-import Auth from "./containers/Auth/Auth";
+import { Switch, Route, withRouter, Redirect } from "react-router-dom";
 import Logout from "./containers/Auth/Logout/Logout";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/index";
+import asyncComponent from "./hoc/asyncComponent/asyncComponent";
 
+const asyncCheckout = asyncComponent(() => {
+  return import("./containers/CheckOut/CheckOut");
+});
+
+const asyncOrders = asyncComponent(() => {
+  return import("./components/Orders/Orders");
+});
+
+const asyncAuth = asyncComponent(() => {
+  return import("./containers/Auth/Auth");
+});
 class App extends Component {
   componentDidMount() {
     this.props.onTryAutoSignup();
@@ -16,7 +25,7 @@ class App extends Component {
   render() {
     let routes = (
       <>
-        <Route path="/auth" component={Auth} />
+        <Route path="/auth" component={asyncAuth} />
         <Route path="/" exact component={BurgerBuilder} />
         <Redirect to="/" />
       </>
@@ -24,13 +33,14 @@ class App extends Component {
 
     if (this.props.inAuthenticated) {
       routes = (
-        <>
-          <Route path="/" exact component={BurgerBuilder} />
-          <Route path="/checkout" component={CheckOut} />
-          <Route path="/orders" component={Orders} />
+        <Switch>
+          <Route path="/checkout" component={asyncCheckout} />
+          <Route path="/orders" component={asyncOrders} />
+          <Route path="/auth" component={asyncAuth} />
           <Route path="/logout" component={Logout} />
+          <Route path="/" exact component={BurgerBuilder} />
           <Redirect to="/" />
-        </>
+        </Switch>
       );
     }
     return (

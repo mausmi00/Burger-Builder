@@ -1,7 +1,6 @@
 import * as actionTypes from "../actions/actionTypes";
-import { updateObject } from "../utility";
 import { fetchOrdersFailed } from "../actions/order";
-import { act } from "react-dom/test-utils";
+import {updateObject} from "../../shared/utility"
 const initialState = {
   ingredients: null,
   totalPrice: 4,
