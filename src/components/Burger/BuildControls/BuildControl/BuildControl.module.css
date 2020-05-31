@@ -56,3 +56,16 @@
   background-color: #99703f;
   color: white;
 }
+
+
+@media (min-width: 700px) and (min-height: 1000px) {
+  .BuildControl button {
+    width: 130px;
+  }
+}
+@media (min-width: 1000px) and (min-height: 1366px) {
+  .BuildControl button {
+    width: 120px;
+  }
+}
+

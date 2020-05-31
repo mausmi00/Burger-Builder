@@ -6,7 +6,8 @@
   align-items: center;
   box-shadow: 0 2px 1px #ccc;
   margin: auto;
-  padding: 10px 0;
+  padding: 20px 0;
+  height: 600px;
 }
 
 .OrderButton {
@@ -39,6 +40,10 @@
   animation: enable 0.3s linear;
 }
 
+p {
+  text-align: center;
+}
+
 @keyframes enable {
   0% {
     transform: scale(1);
@@ -50,3 +55,52 @@
     transform: scale(1);
   }
 }
+
+@media (min-width: 300px) and (min-height: 500px) {
+  .BuildControls {
+    height: 400px;
+    text-align: center;
+  }
+  .BuildControlsObj {
+    font-size: 20px;
+   }
+}
+@media (min-width: 300px) and (min-height: 800px) {
+  .BuildControls {
+    height: 600px;
+    text-align: center;
+  }
+  .BuildControlsObj {
+    font-size: 22px;
+   }
+}
+@media (min-width: 400px) and (min-height: 700px) {
+  .BuildControls {
+    height: 600px;
+    text-align: center;
+  }
+  .BuildControlsObj {
+    font-size: 22px;
+   }
+}
+@media (min-width: 700px) and (min-height: 1000px) {
+  .BuildControls {
+    height: 1000px;
+    text-align: center;
+  }
+  .BuildControlsObj {
+   font-size: 35px;
+  }
+  
+}
+@media (min-width: 1000px) and (min-height: 1300px) {
+  .BuildControls {
+    height: 1000px;
+    text-align: center;
+  }
+  .BuildControlsObj {
+   font-size: 50px;
+  }
+  
+}
+

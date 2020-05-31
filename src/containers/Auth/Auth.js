@@ -110,7 +110,7 @@ class Auth extends Component {
     }
     return (
       <div className={classes.Auth}>
-        <h2>{!this.state.isSignUp ? "SIGN IN" : "SIGN UP"}</h2>
+        <h2>{!this.state.isSignUp ? "SIGN IN" : "REGISTER"}</h2>
         {authRedirect}
         {errorMessage}
         <form onSubmit={this.submitHandler}>
@@ -118,7 +118,7 @@ class Auth extends Component {
           <Button btnType="Success">SUBMIT</Button>
         </form>
         <Button clicked={this.switchAuthModeHandler} btnType="Danger">
-          SWITCH TO {this.state.isSignUp ? "SIGN IN" : "SIGN UP"}
+           {this.state.isSignUp ? "SIGN IN" : "REGISTER"}
         </Button>
       </div>
     );
