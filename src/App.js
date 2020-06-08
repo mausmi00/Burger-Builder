@@ -6,7 +6,6 @@ import Logout from "./containers/Auth/Logout/Logout";
 import { connect } from "react-redux";
 import * as actions from "./store/actions/index";
 
-
 const Checkout = React.lazy(() => {
   return import("./containers/CheckOut/CheckOut");
 });
@@ -19,9 +18,11 @@ const Auth = React.lazy(() => {
   return import("./containers/Auth/Auth");
 });
 const App = (props) => {
+  const { onTryAutoSignup } = props;
   useEffect(() => {
-    props.onTryAutoSignup();
-  }, []);
+    onTryAutoSignup();
+  }, [onTryAutoSignup]);
+  
   let routes = (
     <>
       <Route path="/auth" component={Auth} />
